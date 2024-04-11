@@ -15,13 +15,19 @@ const createCounter = function (init) {
   let origin = init
   let radix = init
   function reset() {
+    radix = origin
     return radix
   }
   function increment() {
-    return radix++
+    return ++radix
   }
   function decrement() {
-    return  radix--
+    return --radix
+  }
+  return {
+    reset,
+    increment,
+    decrement,
   }
 }
 

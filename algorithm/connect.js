@@ -2,4 +2,21 @@
 
 const connect = function(root) {
   let queue = []
+  let result = []
+  let size = 0
+  if (root) {
+    queue.push(root)
+    size++
+  }
+  while(queue.length) {
+    while(size) {
+      let temp = queue.shift()
+      result.push(temp.val)
+      if (temp.right) {
+
+      }
+    }
+  }
+
+  return result
 }
