@@ -2,7 +2,6 @@
 
 const connect = function (root) {
   let queue = []
-  let result = []
   let size = 0
   if (root) {
     queue.push(root)
@@ -11,18 +10,18 @@ const connect = function (root) {
   while (queue.length) {
     while (size) {
       let temp = queue.shift()
-      result.push(temp.val)
+      if (size !== 1) {
+        temp.next = queue[0]
+      }
       if (temp.left) {
-
+        queue.push(temp.left)
       }
       if (temp.right) {
-
+        queue.push(temp.right)
       }
-      if (size === 0) {
-
-      }
+      size--
     }
+    size = queue.length
   }
-
-  return result
+  return root
 }
