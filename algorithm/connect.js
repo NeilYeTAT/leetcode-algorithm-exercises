@@ -12,6 +12,9 @@ const connect = function(root) {
     while(size) {
       let temp = queue.shift()
       result.push(temp.val)
+      if (temp.left) {
+        
+      }
       if (temp.right) {
 
       }
