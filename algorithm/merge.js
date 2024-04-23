@@ -41,11 +41,34 @@
 // / const nums1 = [0]
 // const nums2 = [2, 5, 6] // n = 3
 
-const merge = function(nums1, m, nums2, n) {
-  for(let i = 0; i < nums2.length; i++) {
-    nums1[i + m] = nums2[i]
+// const merge = function(nums1, m, nums2, n) {
+//   for(let i = 0; i < nums2.length; i++) {
+//     nums1[i + m] = nums2[i]
+//   }
+//   nums1.sort((a, b) => a -b)
+// }
+// // merge(nums1, 3, nums2, 3)
+// merge(nums1, 0, nums2, 1)
+// 24-4-17 上面写的什么玩意儿
+
+const merge = function (A, m, B, n) {
+  let innerA = m - 1
+  let innerB = n - 1
+  let tail = A.length - 1
+  while (innerA < 0 || innerB === m - 1) {
+    if (A[innerA] <= B[innerB]) {
+      A[tail] = B[innerB]
+      innerB--
+    } else if (A[innerA] > B[innerB]) {
+      // A[tail] = A[innerA]
+      // A[innerA] = B[innerB]
+      // innerB--
+    }
+    tail--
   }
-  nums1.sort((a, b) => a -b)
+  return A
 }
-// merge(nums1, 3, nums2, 3)
-merge(nums1, 0, nums2, 1)
+const A = [1, 2, 3, 0, 0, 0]
+let m = 3, n = 3
+const B = [2, 5, 6]
+console.log(merge(A, m, B, n));

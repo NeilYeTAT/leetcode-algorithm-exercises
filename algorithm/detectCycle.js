@@ -1,6 +1,5 @@
 // 
 
-console.log(isNaN(' '))
 const detectCycle = function (head) {
   let slow = head, fast = head
   if (slow?.next === undefined) {
