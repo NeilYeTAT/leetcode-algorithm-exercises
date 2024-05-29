@@ -1,6 +1,6 @@
 // // 给你一个字符串数组，请你将 字母异位词 组合在一起。可以按任意顺序返回结果列表。
 // // 字母异位词 是由重新排列源单词的所有字母得到的一个新单词。
-// // 排序, 没思路, 一点都没有 
+// // 排序, 没思路, 一点都没有
 // const strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
 // // let strs = ['a', '']
 // // let strs = ['c', 'c', 'c', '', '', 'a', 'b']
@@ -64,40 +64,54 @@
 // let strs = ['c', 'c', 'c', '', '', 'a', 'b']
 // let strs = ["cab", "tin", "pew", "duh", "may", "ill", "buy", "bar", "max", "doc"]
 
-const strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
-const groupAngrams = function (strs) {
-  let fake = []
-  for (let item of strs) {
-    item = [...item].sort().join('')
-    fake.push(item)
-  }
-  console.log(fake)
-  let table = new Set(fake)
-  console.log(table)
-  // console.log(fake.sort())
-  console.log((strs))
-  let result = new Array(table.size)
-  console.log(result)
+// const groupAngrams = function (strs) {
+//   let fake = []
+//   for (let item of strs) {
+//     item = [...item].sort().join('')
+//     fake.push(item)
+//   }
+//   console.log(fake)
+//   let table = new Set(fake)
+//   console.log(table)
+//   // console.log(fake.sort())
+//   console.log((strs))
+//   let result = new Array(table.size)
+//   console.log(result)
 
-  for (let [key, value] of table.entries()) {
-    console.log(value)
+//   for (let [key, value] of table.entries()) {
+//     console.log(value)
+//   }
+//   return result
+// }
+
+// var groupAnagrams1 = function (strs) {
+//   const map = new Map();
+//   for (let str of strs) {
+//     let array = Array.from(str);
+//     array.sort();
+//     let key = array.toString();
+//     console.log(key)
+//     let list = map.get(key) ? map.get(key) : new Array();
+//     list.push(str);
+//     map.set(key, list);
+//   }
+//   console.log(map)
+//   return Array.from(map.values());
+// };
+
+const strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+
+const groupAnagrams = function (strs) {
+  const hashMap = new Map()
+  for (let str of strs) {
+    let arr = Array.from(str)
+    arr.sort()
+    let key = arr.toString()
+    let list = hashMap.get(key) ? hashMap.get(key) : new Array()
+    list.push(str)
+    hashMap.set(key, list)
   }
-  return result
+  return Array.from(hashMap.values())
 }
 
-var groupAnagrams1 = function (strs) {
-  const map = new Map();
-  for (let str of strs) {
-    let array = Array.from(str);
-    array.sort();
-    let key = array.toString();
-    console.log(key)
-    let list = map.get(key) ? map.get(key) : new Array();
-    list.push(str);
-    map.set(key, list);
-  }
-  console.log(map)
-  return Array.from(map.values());
-};
-
-console.log(groupAnagrams1(strs))
+console.log(groupAnagrams(strs))
