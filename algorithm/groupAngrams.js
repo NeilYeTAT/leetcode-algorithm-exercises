@@ -98,7 +98,6 @@
 //   console.log(map)
 //   return Array.from(map.values());
 // };
-
 const strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
 
 const groupAnagrams = function (strs) {

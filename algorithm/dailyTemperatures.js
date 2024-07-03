@@ -1,7 +1,7 @@
 // 给定一个整数数组 temperatures ，表示每天的温度，返回一个数组 answer ，其中 answer[i] 是指对于第 i 天，下一个更高温度出现在几天后。如果气温在这之后都不会升高，请在该位置用 0 来代替。
 // 输入: temperatures = [73,74,75,71,69,72,76,73]
 // 输出: [1,1,4,2,1,1,0,0]
-// 倒序遍历, 压入栈中, 
+// 倒序遍历, 压入栈中,
 // 如果该元素大于栈顶, 栈顶弹出, 继续比较, 直到为0, 压入栈中
 // 如果该元素小于栈顶, 记录为1
 // 相同元素保留左边
@@ -58,17 +58,38 @@
   // }
   // return result
 **/
-const dailyTemperatures = function (temperatures) {
-  const stack = []
-  const result = new Array(temperatures.length).fill(0)
+// const dailyTemperatures = function (temperatures) {
+//   const stack = []
+//   const result = new Array(temperatures.length).fill(0)
+//   for (let i = 0; i < temperatures.length; i++) {
+//     while (stack.length && temperatures[i] > temperatures[stack[stack.length - 1]]) {
+//       result[stack[stack.length - 1]] = i - stack[stack.length - 1]
+//       stack.pop()
+//     }
+//     stack.push(i)
+//   }
+//   return result
+// }
+
+var dailyTemperatures = function (temperatures) {
+  const res = Array(temperatures.length).fill(0)
+  let arr = []
   for (let i = 0; i < temperatures.length; i++) {
-    while (stack.length && temperatures[i] > temperatures[stack[stack.length - 1]]) {
-      result[stack[stack.length - 1]] = i - stack[stack.length - 1]
-      stack.pop()
+    while (
+      temperatures[arr[arr.length - 1]] < temperatures[i] &&
+      arr.length > 0
+    ) {
+      res[arr[arr.length - 1]] = i - arr[arr.length - 1]
+      arr.pop()
     }
-    stack.push(i)
+    arr.push(i)
   }
-  return result
+  return res
 }
-// console.log(dailyTemperatures([3, 4, 5, 6]))
+// if (arr.length === 0 || temperatures[arr[r]] >= temperatures[i]) {
+//   arr.push(i)
+//   continue
+// }
+
+console.log(dailyTemperatures([3, 4, 5, 6]))
 console.log(dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]))
